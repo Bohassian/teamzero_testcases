@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class UserInviteToGroupTest {
@@ -24,7 +25,15 @@ public class UserInviteToGroupTest {
 
   @Test
   public void testUserInviteToGroup() throws Exception {
-    driver.get("http://ec2-52-201-243-68.compute-1.amazonaws.com/user/4/groups");
+    driver.get("http://ec2-52-201-243-68.compute-1.amazonaws.com/");
+    driver.findElement(By.xpath("//input[@value='Login']")).click();
+    driver.findElement(By.id("email")).click();
+    driver.findElement(By.id("email")).clear();
+    driver.findElement(By.id("email")).sendKeys("test@test.com");
+    driver.findElement(By.id("password")).clear();
+    driver.findElement(By.id("password")).sendKeys("password");
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::button[1]")).click();
+    driver.findElement(By.xpath("//input[@value='Groups']")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Owner'])[1]/following::button[1]")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='User To Invite:'])[1]/following::button[1]")).click();
     driver.findElement(By.id("select")).click();

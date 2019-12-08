@@ -24,15 +24,20 @@ public class UserAddPostTest {
 
   @Test
   public void testUserAddPost() throws Exception {
-    driver.get("http://ec2-52-201-243-68.compute-1.amazonaws.com/user/4/feed");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Zero Space'])[1]/following::div[5]")).click();
+    driver.get("http://ec2-52-201-243-68.compute-1.amazonaws.com/");
+    driver.findElement(By.xpath("//input[@value='Login']")).click();
+    driver.findElement(By.id("email")).click();
+    driver.findElement(By.id("email")).clear();
+    driver.findElement(By.id("email")).sendKeys("test@test.com");
+    driver.findElement(By.id("password")).clear();
+    driver.findElement(By.id("password")).sendKeys("password");
+    driver.findElement(By.id("login")).submit();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='test test'])[1]/following::button[1]")).click();
-    driver.findElement(By.name("radio2")).click();
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Post To Type:'])[1]/following::label[1]")).click();
     driver.findElement(By.id("body")).click();
     driver.findElement(By.id("body")).clear();
-    driver.findElement(By.id("body")).sendKeys("Testing");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Testing'])[1]/following::button[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='POSTS'])[1]/following::div[3]")).click();
+    driver.findElement(By.id("body")).sendKeys("A post!");
+    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='A post!'])[1]/following::button[1]")).click();
   }
 
   @After

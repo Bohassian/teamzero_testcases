@@ -24,11 +24,20 @@ public class UserAddConnectionTest {
 
   @Test
   public void testUserAddConnection() throws Exception {
-    driver.get("http://ec2-52-201-243-68.compute-1.amazonaws.com/user/4/connections");
+    driver.get("http://ec2-52-201-243-68.compute-1.amazonaws.com/");
+    driver.findElement(By.xpath("//input[@value='Login']")).click();
+    driver.findElement(By.id("email")).click();
+    driver.findElement(By.id("email")).clear();
+    driver.findElement(By.id("email")).sendKeys("test@test.com");
+    driver.findElement(By.id("password")).clear();
+    driver.findElement(By.id("password")).sendKeys("password");
+    driver.findElement(By.id("login")).submit();
+    driver.findElement(By.xpath("//input[@value='Connections']")).click();
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Connections'])[1]/following::button[1]")).click();
     driver.findElement(By.id("name")).click();
+    driver.findElement(By.id("name")).click();
     driver.findElement(By.id("name")).clear();
-    driver.findElement(By.id("name")).sendKeys("test2");
+    driver.findElement(By.id("name")).sendKeys("terst");
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Userame'])[1]/following::button[1]")).click();
   }
 
